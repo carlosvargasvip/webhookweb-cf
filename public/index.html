@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Tester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Webhook Tester</h1>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="send">Send Webhooks</button>
+            <button class="tab-btn" data-tab="receive">Receive Webhooks</button>
+        </div>
+
+        <!-- Send Webhook Tab -->
+        <div id="send-tab" class="tab-content active">
+            <p class="description">Send a test webhook with your custom data</p>
+
+            <form id="webhookForm">
+                <div class="form-group">
+                    <label for="webhookUrl">Webhook URL *</label>
+                    <input
+                        type="url"
+                        id="webhookUrl"
+                        name="webhookUrl"
+                        placeholder="https://example.com/webhook"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Customer Name *</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="John Doe"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Customer Email *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="john@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="offerName">Offer Name *</label>
+                    <input
+                        type="text"
+                        id="offerName"
+                        name="offerName"
+                        placeholder="Special Offer"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input
+                        type="text"
+                        id="productName"
+                        name="productName"
+                        placeholder="Premium Course"
+                        required
+                    >
+                </div>
+
+                <button type="submit" id="submitBtn">Send Webhook</button>
+            </form>
+
+            <div id="status" class="status hidden"></div>
+
+            <!-- Response Display -->
+            <div id="responseSection" class="response-section hidden">
+                <h2>Response</h2>
+                <div class="response-item">
+                    <div class="section-header">
+                        <h4>Body</h4>
+                        <button class="copy-btn" id="copyResponseBody">Copy</button>
+                    </div>
+                    <pre id="responseBody"></pre>
+                </div>
+                <div class="response-item">
+                    <div class="section-header">
+                        <h4>Headers</h4>
+                        <button class="copy-btn" id="copyResponseHeaders">Copy</button>
+                    </div>
+                    <pre id="responseHeaders"></pre>
+                </div>
+            </div>
+
+            <div class="payload-preview">
+                <h2>Payload Preview</h2>
+                <button id="togglePayload" type="button">Show Payload</button>
+                <pre id="payloadDisplay" class="hidden"></pre>
+            </div>
+        </div>
+
+        <!-- Receive Webhook Tab -->
+        <div id="receive-tab" class="tab-content">
+            <p class="description">Receive and inspect incoming webhooks in real-time</p>
+
+            <div class="webhook-url-section">
+                <label>Your Webhook URL</label>
+                <div class="url-display">
+                    <input type="text" id="receiverUrl" readonly>
+                    <button type="button" id="copyUrlBtn">Copy</button>
+                    <button type="button" id="newSessionBtn">New Session</button>
+                </div>
+                <p class="url-hint">Send webhooks to this URL to see them appear below</p>
+            </div>
+
+            <div class="receiver-controls">
+                <div class="polling-status">
+                    <span class="status-dot" id="pollingDot"></span>
+                    <span id="pollingText">Listening for webhooks...</span>
+                </div>
+                <button type="button" id="clearWebhooksBtn">Clear All</button>
+            </div>
+
+            <div class="webhooks-list" id="webhooksList">
+                <div class="empty-state">
+                    <p>No webhooks received yet</p>
+                    <p class="hint">Send a POST request to your webhook URL to see it here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
