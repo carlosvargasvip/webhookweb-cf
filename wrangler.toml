@@ -1,7 +1,7 @@
-name = "webhookweb"
+name = "webhooktester"
 compatibility_date = "2025-03-01"
 pages_build_output_dir = "public"
 
 [[kv_namespaces]]
 binding = "WEBHOOKS"
-id = ""
+id = "04975ac9d7e041ceb3eed62372641e6e"
